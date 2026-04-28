@@ -1,3 +1,3 @@
-from aw_client import cli
+from .aw_client import cli
 
 cli.main()

@@ -12,8 +12,8 @@ from aqt.utils import showWarning
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "vendor"))
 
-from aw_client import ActivityWatchClient
-from aw_client.config import load_config
+from .aw_client import ActivityWatchClient
+from .aw_client.config import load_config
 from aw_core.models import Event
 
 from .config import config
