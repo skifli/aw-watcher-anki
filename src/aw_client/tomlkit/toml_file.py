@@ -3,8 +3,8 @@ import re
 
 from typing import TYPE_CHECKING
 
-from ..api import loads
-from ..toml_document import TOMLDocument
+from .api import loads
+from .toml_document import TOMLDocument
 
 
 if TYPE_CHECKING:

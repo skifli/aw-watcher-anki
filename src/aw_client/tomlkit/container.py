@@ -5,22 +5,22 @@ import copy
 from collections.abc import Iterator
 from typing import Any
 
-from .._compat import decode
-from .._types import _CustomDict
-from .._utils import merge_dicts
-from ..exceptions import KeyAlreadyPresent
-from ..exceptions import NonExistentKey
-from ..exceptions import TOMLKitError
-from ..items import AoT
-from ..items import Comment
-from ..items import Item
-from ..items import Key
-from ..items import Null
-from ..items import SingleKey
-from ..items import Table
-from ..items import Trivia
-from ..items import Whitespace
-from ..items import item as _item
+from ._compat import decode
+from ._types import _CustomDict
+from ._utils import merge_dicts
+from .exceptions import KeyAlreadyPresent
+from .exceptions import NonExistentKey
+from .exceptions import TOMLKitError
+from .items import AoT
+from .items import Comment
+from .items import Item
+from .items import Key
+from .items import Null
+from .items import SingleKey
+from .items import Table
+from .items import Trivia
+from .items import Whitespace
+from .items import item as _item
 
 
 _NOT_SET = object()

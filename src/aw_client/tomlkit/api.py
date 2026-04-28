@@ -9,32 +9,32 @@ from typing import IO
 from typing import TYPE_CHECKING
 from typing import TypeVar
 
-from .._utils import parse_rfc3339
-from ..container import Container
-from ..exceptions import UnexpectedCharError
-from ..items import CUSTOM_ENCODERS
-from ..items import AoT
-from ..items import Array
-from ..items import Bool
-from ..items import Comment
-from ..items import Date
-from ..items import DateTime
-from ..items import DottedKey
-from ..items import Float
-from ..items import InlineTable
-from ..items import Integer
-from ..items import Item as _Item
-from ..items import Key
-from ..items import SingleKey
-from ..items import String
-from ..items import StringType as _StringType
-from ..items import Table
-from ..items import Time
-from ..items import Trivia
-from ..items import Whitespace
-from ..items import item
-from ..parser import Parser
-from ..toml_document import TOMLDocument
+from ._utils import parse_rfc3339
+from .container import Container
+from .exceptions import UnexpectedCharError
+from .items import CUSTOM_ENCODERS
+from .items import AoT
+from .items import Array
+from .items import Bool
+from .items import Comment
+from .items import Date
+from .items import DateTime
+from .items import DottedKey
+from .items import Float
+from .items import InlineTable
+from .items import Integer
+from .items import Item as _Item
+from .items import Key
+from .items import SingleKey
+from .items import String
+from .items import StringType as _StringType
+from .items import Table
+from .items import Time
+from .items import Trivia
+from .items import Whitespace
+from .items import item
+from .parser import Parser
+from .toml_document import TOMLDocument
 
 
 if TYPE_CHECKING:

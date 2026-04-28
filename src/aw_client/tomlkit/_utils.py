@@ -10,7 +10,7 @@ from datetime import time
 from datetime import timedelta
 from datetime import timezone
 
-from .._compat import decode
+from ._compat import decode
 
 
 RFC_3339_LOOSE = re.compile(
