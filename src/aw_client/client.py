@@ -17,7 +17,7 @@ from typing import (
     Union,
 )
 
-import persistqueue
+from . import persistqueue
 import requests as req
 from aw_core.dirs import get_data_dir
 from aw_core.models import Event
