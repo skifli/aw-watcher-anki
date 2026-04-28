@@ -10,7 +10,7 @@ from typing import (
     Union,
 )
 
-import iso8601
+from .. import iso8601
 
 logger = logging.getLogger(__name__)
 

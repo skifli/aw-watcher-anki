@@ -2,7 +2,7 @@ import logging
 import os
 from typing import Union
 
-import tomlkit
+from .. import tomlkit
 from deprecation import deprecated
 
 from . import dirs

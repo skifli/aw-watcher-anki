@@ -3,7 +3,7 @@ import sys
 from functools import wraps
 from typing import Callable, Optional
 
-import platformdirs
+from .. import platformdirs
 
 GetDirFunc = Callable[[Optional[str]], str]
 

@@ -6,7 +6,7 @@ from copy import deepcopy
 from typing import List, Tuple, Optional
 from datetime import datetime, timedelta, timezone
 
-from timeslot import Timeslot
+from ...timeslot import Timeslot
 
 from ..aw_core import Event
 
