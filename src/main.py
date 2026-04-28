@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import os
 import sys
 from concurrent.futures import Future
@@ -5,26 +7,25 @@ from datetime import datetime, timezone
 from time import sleep
 
 import requests
-from anki.collection import Collection
-from anki.utils import pointVersion
 from aqt import gui_hooks, mw
-from aqt.utils import showWarning
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "vendor"))
 
 from .aw_client import ActivityWatchClient
 from .aw_client.config import load_config
 
-from .config import config
-from .consts import consts
-from .log import logger
-
 PULSE_TIME = 60
 
 
 def watch() -> None:
-    logger.info("Starting watcher...")
+    from anki.utils import pointVersion
+    from aqt.utils import showWarning
+    from .config import config
+    from .consts import consts
+    from .log import logger
     from .aw_client.aw_core.models import Event
+    
+    logger.info("Starting watcher...")
     client = ActivityWatchClient("anki-client", testing=config["testing"])
     bucket_id = f"anki-watcher_{client.client_hostname}"
     client.create_bucket(bucket_id, event_type="app.anki.review")
@@ -51,6 +52,11 @@ def watch() -> None:
 
 
 def on_done(fut: Future) -> None:
+    from aqt import mw
+    from aqt.utils import showWarning
+    from .config import config
+    from .consts import consts
+    
     try:
         fut.result()
     except requests.exceptions.ConnectionError:
@@ -68,6 +74,9 @@ then restart Anki.""",
 
 
 def on_collection_did_load(col: Collection) -> None:
+    from anki.utils import pointVersion
+    from aqt import mw
+    
     if pointVersion() >= 230100:
         # pylint: disable=unexpected-keyword-arg
         mw.taskman.run_in_background(watch, on_done, uses_collection=False)  # type: ignore
