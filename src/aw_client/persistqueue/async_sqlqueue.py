@@ -9,8 +9,8 @@ import time as _time
 from typing import Any, Optional
 import aiosqlite
 
-from persistqueue.exceptions import Empty
-import persistqueue.serializers.pickle
+from .exceptions import Empty
+from .serializers import pickle as serializers_pickle
 
 log = logging.getLogger(__name__)
 
@@ -39,7 +39,7 @@ class AsyncSQLiteQueue:
     _SQL_DELETE = 'DELETE FROM {table_name} WHERE {key_column} {op} ?'
 
     def __init__(self, path: str, name: str = 'default',
-                 serializer: Any = persistqueue.serializers.pickle,
+                 serializer: Any = serializers_pickle,
                  auto_commit: bool = True) -> None:
         """Initialize async SQLite queue.
 

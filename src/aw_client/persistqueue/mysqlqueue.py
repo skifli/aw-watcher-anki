@@ -1,7 +1,8 @@
 from dbutils.pooled_db import PooledDB
 import threading
 import time as _time
-import persistqueue
+
+from .serializers import pickle as serializers_pickle
 from .sqlbase import SQLBase
 from typing import Any, Optional
 
@@ -43,7 +44,7 @@ class MySQLQueue(SQLBase):
         port: int = 3306,
         charset: str = 'utf8mb4',
         auto_commit: bool = True,
-        serializer: Any = persistqueue.serializers.pickle,
+        serializer: Any = serializers_pickle,
     ) -> None:
         super(MySQLQueue, self).__init__()
         self.name = name if name else "sql"

@@ -4,9 +4,10 @@ import os
 import tempfile
 import threading
 from time import time as _time
-import persistqueue.serializers.pickle
-from persistqueue.exceptions import Empty, Full
 from typing import Any, Optional, Tuple, BinaryIO
+
+from .exceptions import Empty, Full
+from .serializers import pickle as serializers_pickle
 
 log = logging.getLogger(__name__)
 
@@ -31,7 +32,7 @@ class Queue:
         maxsize: int = 0,
         chunksize: int = 100,
         tempdir: Optional[str] = None,
-        serializer: Any = persistqueue.serializers.pickle,
+        serializer: Any = serializers_pickle,
         autosave: bool = False
     ) -> None:
         """Create a persistent queue object on a given path.

@@ -13,8 +13,8 @@ from typing import Any, Optional, Tuple
 import aiofiles
 import aiofiles.os
 
-from persistqueue.exceptions import Empty, Full
-import persistqueue.serializers.pickle
+from .exceptions import Empty, Full
+from .serializers import pickle as serializers_pickle
 
 log = logging.getLogger(__name__)
 
@@ -51,7 +51,7 @@ class AsyncQueue:
         self.maxsize = maxsize
         self.chunksize = chunksize
         self.tempdir = tempdir
-        self.serializer = serializer or persistqueue.serializers.pickle
+        self.serializer = serializer or serializers_pickle
 
         # Validate serializer has required methods
         if not hasattr(self.serializer, 'dump') or (

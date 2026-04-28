@@ -4,7 +4,8 @@ import sqlite3
 import time as _time
 import threading
 from typing import Any
-from persistqueue import sqlbase
+
+from . import sqlbase
 
 sqlite3.enable_callback_tracebacks(True)
 log = logging.getLogger(__name__)

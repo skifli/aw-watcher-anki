@@ -5,8 +5,8 @@ import sqlite3
 import threading
 from typing import Any, Callable, Tuple, Optional
 
-from persistqueue.exceptions import Empty
-import persistqueue.serializers.pickle
+from .exceptions import Empty
+from .serializers import pickle as serializers_pickle
 
 sqlite3.enable_callback_tracebacks(True)
 log = logging.getLogger(__name__)
@@ -75,7 +75,7 @@ class SQLBase(object):
     _SQL_DELETE = ''  # SQL to delete a record
 
     def __init__(self) -> None:
-        self._serializer = persistqueue.serializers.pickle
+        self._serializer = serializers_pickle
         self.auto_commit = True  # Transaction commit behavior
         # SQL transaction lock
         self.tran_lock = threading.Lock()
@@ -361,7 +361,7 @@ class SQLiteBase(SQLBase):
     def __init__(self, path: str, name: str = 'default',
                  multithreading: bool = False, timeout: float = 10.0,
                  auto_commit: bool = True,
-                 serializer: Any = persistqueue.serializers.pickle,
+                 serializer: Any = serializers_pickle,
                  db_file_name: Optional[str] = None) -> None:
         """Initiate a queue in sqlite3 or memory.
 

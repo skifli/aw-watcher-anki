@@ -1,7 +1,8 @@
 import logging
 import sqlite3
-from persistqueue import sqlbase
 from typing import Any, Iterator
+
+from . import sqlbase
 
 log = logging.getLogger(__name__)
 
