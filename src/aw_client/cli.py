@@ -9,7 +9,7 @@ from typing import List, Optional
 from zoneinfo import ZoneInfo
 
 import click
-from aw_core import Event
+from .aw_core import Event
 from tabulate import tabulate
 
 import aw_client

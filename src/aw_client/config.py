@@ -3,8 +3,8 @@ import os
 from typing import Optional, Union
 
 import tomlkit
-from aw_core import dirs
-from aw_core.config import load_config_toml
+from .aw_core import dirs
+from .aw_core.config import load_config_toml
 
 logger = logging.getLogger(__name__)
 

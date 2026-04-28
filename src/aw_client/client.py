@@ -19,9 +19,6 @@ from typing import (
 
 from . import persistqueue
 import requests as req
-from aw_core.dirs import get_data_dir
-from aw_core.models import Event
-from aw_transform.heartbeats import heartbeat_merge
 
 from .config import load_config, load_local_server_api_key
 from .singleinstance import SingleInstance
@@ -155,7 +152,8 @@ class ActivityWatchClient:
         self,
         bucket_id: str,
         event_id: int,
-    ) -> Optional[Event]:
+    ):
+        from .aw_core.models import Event
         endpoint = f"buckets/{bucket_id}/events/{event_id}"
         try:
             event = self._get(endpoint).json()
@@ -186,7 +184,7 @@ class ActivityWatchClient:
         events = self._get(endpoint, params=params).json()
         return [Event(**event) for event in events]
 
-    def insert_event(self, bucket_id: str, event: Event) -> None:
+    def insert_event(self, bucket_id: str, event) -> None:
         endpoint = f"buckets/{bucket_id}/events"
         data = [event.to_json_dict()]
         self._post(endpoint, data)
@@ -250,6 +248,7 @@ class ActivityWatchClient:
 
             last_heartbeat = self.last_heartbeat[bucket_id]
 
+            from .aw_transform.heartbeats import heartbeat_merge
             merge = heartbeat_merge(last_heartbeat, event, pulsetime)
 
             if merge:
@@ -424,6 +423,7 @@ class RequestQueue(threading.Thread):
         self._attempt_reconnect_interval = 10
 
         # Setup failed queues file
+        from .aw_core.dirs import get_data_dir
         data_dir = get_data_dir("aw-client")
         queued_dir = os.path.join(data_dir, "queued")
         if not os.path.exists(queued_dir):

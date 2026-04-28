@@ -14,7 +14,6 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "vendor"))
 
 from .aw_client import ActivityWatchClient
 from .aw_client.config import load_config
-from aw_core.models import Event
 
 from .config import config
 from .consts import consts
@@ -25,6 +24,7 @@ PULSE_TIME = 60
 
 def watch() -> None:
     logger.info("Starting watcher...")
+    from .aw_client.aw_core.models import Event
     client = ActivityWatchClient("anki-client", testing=config["testing"])
     bucket_id = f"anki-watcher_{client.client_hostname}"
     client.create_bucket(bucket_id, event_type="app.anki.review")
