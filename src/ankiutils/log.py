@@ -24,7 +24,8 @@ def get_logger(module: str) -> logging.Logger:
     stdout_handler.setFormatter(stdout_formatter)
     logger.addHandler(stdout_handler)
 
-    logs_dir = Path(mw.addonManager.addonsFolder(addon)) / "user_files" / "logs"
+    state_root = Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local" / "state"))
+    logs_dir = state_root / "anki" / addon / "logs"
     logs_dir.mkdir(parents=True, exist_ok=True)
     log_path = os.path.join(logs_dir, f"{addon}.log")
     file_handler = RotatingFileHandler(
