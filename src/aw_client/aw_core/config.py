@@ -3,7 +3,7 @@ import os
 from typing import Union
 
 from .. import tomlkit
-from deprecation import deprecated
+from ..deprecation import deprecated
 
 from . import dirs
 

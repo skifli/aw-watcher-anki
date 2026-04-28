@@ -14,7 +14,7 @@ import functools
 import textwrap
 import warnings
 
-from . import version
+from .packaging import version
 from datetime import date
 
 __version__ = "2.1.0"
